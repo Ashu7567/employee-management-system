@@ -1,7 +1,21 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../server'); // Ensure this path is correct
+const mongoose = require('mongoose');
 
 describe('Employee API', () => {
+  beforeAll(async () => {
+    // Connect to MongoDB before running tests
+    await mongoose.connect('mongodb://localhost:27017/employeeDB', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  });
+
+  afterAll(async () => {
+    // Disconnect from MongoDB after running tests
+    await mongoose.connection.close();
+  });
+
   it('should get all employees', async () => {
     const res = await request(app).get('/employees');
     expect(res.statusCode).toEqual(200);
@@ -20,7 +34,4 @@ describe('Employee API', () => {
     expect(res.statusCode).toEqual(201);
     expect(res.body.name).toEqual('John Doe');
   });
-});
-test('Example test', () => {
-  expect(1 + 1).toBe(2);
 });
