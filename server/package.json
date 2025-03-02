@@ -4,7 +4,7 @@
   "main": "index.js",
  "scripts": {
   "start": "node server.js",
-  "test": "jest"  // Jest testing framework ka use karein
+  "test": "jest"
 },
   "keywords": [],
   "author": "",
