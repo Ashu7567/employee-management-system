@@ -21,3 +21,6 @@ describe('Employee API', () => {
     expect(res.body.name).toEqual('John Doe');
   });
 });
+test('Example test', () => {
+  expect(1 + 1).toBe(2);
+});
